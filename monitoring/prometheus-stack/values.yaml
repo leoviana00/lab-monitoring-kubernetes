@@ -575,6 +575,8 @@ kubeProxy:
   service:
     enabled: true
     port: 10249
+    selector:
+      k8s-app: kube-proxy
     targetPort: 10249
   serviceMonitor:
     enabled: true

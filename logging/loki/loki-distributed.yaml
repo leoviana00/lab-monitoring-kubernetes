@@ -3,7 +3,7 @@ global:
     registry: null
   priorityClassName: null
   clusterDomain: "cluster.local"
-  dnsService: "kube-dns"
+  dnsService: "coredns"
   dnsNamespace: "kube-system"
 nameOverride: null
 fullnameOverride: null
