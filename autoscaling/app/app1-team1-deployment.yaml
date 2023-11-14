@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app1-team1
+  name: app1-team1
+  namespace: team1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app1-team1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: app1-team1
+    spec:
+      containers:
+      - image: polinux/stress
+        name: stress
+        resources:
+          requests:
+            memory: "100Mi"
+          limits:
+            memory: "300Mi"
+        command: ["stress"]
+        args: ["--vm", "1", "--vm-bytes", "200M", "--vm-hang", "1"]
+        # args: ["--vm", "1", "--vm-bytes", "290M", "--vm-hang", "1"]
+status: {}
