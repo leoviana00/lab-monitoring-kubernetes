@@ -1,0 +1,12 @@
+Log created: 2023-11-13T21:20:44.387874000Z
+Process ID:  609528 (0x94cf8)
+Parent PID:  1 (0x1)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: node-01
+Arg[3]: --startvm
+Arg[4]: 5c62117c-a9e0-42cb-ad7a-1599b07bf538
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2
