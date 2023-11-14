@@ -1,0 +1,18 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: app1-team1
+  namespace: team1
+spec:
+  cooldownPeriod: 30
+  maxReplicaCount: 4
+  minReplicaCount: 1
+  pollingInterval: 30
+  scaleTargetRef:
+    name: app1-team1
+  triggers:
+  - type: prometheus
+    metadata:
+      query: sum(container_memory_usage_bytes{container!="", pod=~"^app1-team1-.*", namespace="team1"}) / sum(kube_pod_container_resource_limits{resource="memory", container!="", pod=~"^app1-team1-.*"}) * 100.0
+      serverAddress: http://prometheus-operated.monitoring.svc.cluster.local:9090
+      threshold: '70'
