@@ -6,7 +6,7 @@
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update 
 ```
-```c
+```console
 Kube-Prometheus-stack, também como Operador Prometheus, é um projeto popular de código aberto que fornece soluções completas de monitoramento e alerta para clusters Kubernetes. Ele combina ferramentas e componentes para criar uma pilha de monitoramento para ambientes Kubernetes.
 ```
 
@@ -33,7 +33,8 @@ helm upgrade --install -f monitoring/prometheus-stack/prometheus-values.yaml kub
 kubectl apply -f monitoring/prometheus-stack/servicemonitor.yaml -n monitoring
 ```
 
-- Consulta prometheus
+- Consulta Prometheus
+- Focando na aplicação criada para o teste de escalonamento
 
 ```bash
 sum by (pod, namespace) (container_memory_working_set_bytes{cluster="",container!="",image!="",job="kubelet",metrics_path="/metrics/cadvisor",namespace="team1",pod=~"^app1-team1-.*"}) / sum by (pod, namespace) (kube_pod_container_resource_limits{cluster="",job="kube-state-metrics",namespace="team1",pod=~"^app1-team1-.*",resource="memory"}) * 100
