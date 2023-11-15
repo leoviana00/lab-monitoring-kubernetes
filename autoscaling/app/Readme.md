@@ -43,3 +43,11 @@ status: {}
 ```
 
 - Alterar o valor `200M` de acordo com a necessidade para gerar um consumo maior ou menor possibilitando os testes de scaling.
+
+
+
+- Consulta usada no ScaleObject
+
+```bash
+sum(container_memory_usage_bytes{container!="", pod=~"^app1-team1-.*", namespace="team1"}) / sum(kube_pod_container_resource_limits{resource="memory", container!="", pod=~"^app1-team1-.*"}) * 100.0
+```

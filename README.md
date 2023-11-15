@@ -51,3 +51,13 @@
 - https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/
 
 - https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/
+
+- https://vertigo.com.br/kubernetes_hpa_memoria/
+
+- https://keda.sh/docs/1.4/scalers/prometheus/
+
+- https://github.com/prometheus-community
+
+- https://github.com/grafana/loki
+
+- https://grafana.com/docs/loki/latest/
