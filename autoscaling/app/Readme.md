@@ -46,7 +46,7 @@ status: {}
 
 
 
-- Consulta usada no ScaleObject
+- Consulta usada no ScaleObject: Métrica personalizada de limites de uso de memória:
 
 ```bash
 sum(container_memory_usage_bytes{container!="", pod=~"^app1-team1-.*", namespace="team1"}) / sum(kube_pod_container_resource_limits{resource="memory", container!="", pod=~"^app1-team1-.*"}) * 100.0
