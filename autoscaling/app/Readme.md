@@ -5,7 +5,7 @@
 ```bash
 kubectl create ns team1
 ```
-- Criar deployments para realização de testes de scalonamento
+- Criar deployments para realização de testes de escalonamento
 
 ```bash
 apiVersion: apps/v1
@@ -44,9 +44,45 @@ status: {}
 
 - Alterar o valor `200M` de acordo com a necessidade para gerar um consumo maior ou menor possibilitando os testes de scaling.
 
+- Criar o ScaledObject
 
+```bash
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: app1-team1
+  namespace: team1
+spec:
+  cooldownPeriod: 30
+  maxReplicaCount: 4
+  minReplicaCount: 1
+  pollingInterval: 30
+  scaleTargetRef:
+    name: app1-team1
+  triggers:
+  - type: prometheus
+    metadata:
+      metricName: max-mem-app1-team1
+      query: |
+        sum(
+          container_memory_usage_bytes{
+            container!="", 
+            pod=~"^app1-team1-.*", 
+            namespace="team1"
+          }
+        ) / 
+        sum(
+          kube_pod_container_resource_limits{
+            resource="memory", 
+            pod=~"^app1-team1-.*",
+            container!=""
+          }
+        ) * 100.0
+      serverAddress: http://prometheus-operated.monitoring.svc.cluster.local:9090
+      threshold: '70'
+```
 
-- Consulta usada no ScaleObject: Métrica personalizada de limites de uso de memória:
+- Consulta usada no `ScaledObject`: Métrica personalizada de limites de uso de memória:
 
 ```bash
 sum(container_memory_usage_bytes{container!="", pod=~"^app1-team1-.*", namespace="team1"}) / sum(kube_pod_container_resource_limits{resource="memory", container!="", pod=~"^app1-team1-.*"}) * 100.0
