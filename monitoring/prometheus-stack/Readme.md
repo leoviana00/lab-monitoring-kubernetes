@@ -33,7 +33,7 @@ helm upgrade --install -f monitoring/prometheus-stack/prometheus-values.yaml kub
 kubectl apply -f monitoring/prometheus-stack/servicemonitor.yaml -n monitoring
 ```
 
-- Consulta Prometheus
+- Exemplo de métrica personalizada de limites de uso de memória:
 - Focando na aplicação criada para o teste de escalonamento
 
 ```bash
