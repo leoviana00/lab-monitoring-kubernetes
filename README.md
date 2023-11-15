@@ -1,65 +1,53 @@
-## Monitoring Kubernetes Stack
+<h1 align="center">Monitoring and Logging</h1>
 
-## Ferramentas
+<p align="center">
+  <img alt="Kubernetes" src="https://img.shields.io/static/v1?label=Kubernetes&message=Monitoring&color=8257E5&labelColor=000000"  />
+  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
+</p>
 
-- Grafana
-- Prometheus
-- AlertManager
-- Loki
-- Ptomtail
+<p align="center">
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-roadmap">Roadmap</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-referências">Referências</a>
+</p>
 
-## Instalação
+<p align="center">
+  <img alt="Monitoring" src="data/monitoring.png">
+</p>
 
-- Step 1: Adicionar repositórios Helm
+## 💡 Projeto
+- Laboratório para testes utilizando uma stack de monitoramento e logs. Realização de testes de autoscaling de aplicações utilizando o hpa e keda.
 
-```bash
-helm repo add kedacore https://kedacore.github.io/charts
-helm repo add argo https://argoproj.github.io/argo-helm
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update 
-```
+## ✨ Tecnologias
+- Monitoring
+    - Grafana
+    - Prometheus
+    - AlertManager
+- Logging
+    - Loki
+    - Ptomtail
+- Autoscaling
+    - HPA
+    - Keda
+    - Metrics
+- Kubernetes
 
-```console
-Kube-Prometheus-stack, também como Operador Prometheus, é um projeto popular de código aberto que fornece soluções completas de monitoramento e alerta para clusters Kubernetes. Ele combina ferramentas e componentes para criar uma pilha de monitoramento para ambientes Kubernetes.
-```
+## 👣 Roadmap
 
-- Step 2: Criar namespace `monitoring`
+- [x] [Preparação de um Cluster Kubernetes utilizando o kubespray](/setup/setup-k8s-kubespray/kubespray/kubespray.md)
+- [x] [Instalação do Helm](/helm/Readme.md)
+- [x] [Instalação da stack de monitoramento](/monitoring/prometheus-stack/Readme.md)
+- [x] [Instalação da stack logging](/logging/Readme.md)
+- [x] [Instalação do Metrics Server](/monitoring/metrics-server/Readme.md)
+- [x] [Instalação do Keda](/autoscaling/keda/Readme.md)
+- [x] [Criar aplicações para realização de testes de escalonamento baseado em consumo de memória](/autoscaling/app/Readme.md)
+- [x] Integração do grafana com o Prometheus
+- [x] Integração do grafana com Loki;
+- [x] [Criar Dashboard no grafana para visualização de logs](/dashboards/Readme.md)
 
-```bash
-kubectl create ns monitoring
-```
+## 📄 Referências
 
-- Step 3: Instalar `Kube-Prometheus-stack`
+- https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/
 
-```console
-Usará o Helm Chart Kube-Prometheus-stack oficial,
-com um arquivo de valor customizado.
-```
-
-```bash
-helm upgrade --install -f prometheus-stack/values.yaml kube-prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring
-```
-
-- Step 3.1: Instalar Service Monitor
-
-```bash
-kubectl apply -f prometheus-stack/servicemonitor.yaml -n monitoring
-```
-
-- Step 4: Instalar o Loki
-
-```bash
-helm upgrade --install -f loki/loki-distributed.yaml loki grafana/loki-distributed -n monitoring
-```
-
-- Step 5: Install Ptomtail
-
-```bash
-helm upgrade --install -f promtail/promtail.yaml promtail grafana/promtail -n monitoring
-```
-
-## Dashboard Grafana
-
-- https://grafana.com/grafana/dashboards/14055-loki-stack-monitoring-promtail-loki/ 
-- https://grafana.com/grafana/dashboards/16966-container-log-dashboard/ 
+- https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/
