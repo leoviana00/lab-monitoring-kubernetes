@@ -43,3 +43,15 @@ sum by (pod, namespace) (container_memory_working_set_bytes{cluster="",container
 <p align="center">
   <img alt="Monitoring" src="../../data/prometheus-01.png">
 </p>
+
+- Targets
+
+<p align="center">
+  <img alt="Monitoring" src="../../data/prometheus-02.png">
+</p>
+
+- Alertmanager
+
+<p align="center">
+  <img alt="Monitoring" src="../../data/prometheus-03.png">
+</p>
