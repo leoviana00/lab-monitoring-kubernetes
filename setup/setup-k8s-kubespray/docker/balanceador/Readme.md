@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <img alt="Balanceador" src="../../images/haproxy.png">
+  <img alt="Balanceador" src="../../../../data/haproxy.jpg">
 </p>
 
 

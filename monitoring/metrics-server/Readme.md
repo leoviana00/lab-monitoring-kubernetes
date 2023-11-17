@@ -20,5 +20,5 @@ args:
 ```bash
 helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
 helm repo update
-helm upgrade --install -f values.yaml metrics-server metrics-server/metrics-server -n kube-system
+helm upgrade --install -f monitoring/metrics-server/values.yaml metrics-server metrics-server/metrics-server -n kube-system
 ```

@@ -1,5 +1,7 @@
 ## Deploy Keda
 
+- Step 1: Instalação do Keda
+
 ```bash
 helm repo add kedacore https://kedacore.github.io/charts
 helm repo update
