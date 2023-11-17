@@ -45,6 +45,7 @@
 - [x] Integração do grafana com o Prometheus
 - [x] Integração do grafana com Loki;
 - [x] [Criar Dashboard no grafana para visualização de logs](/dashboards/Readme.md)
+- [x] [Instalação dessas features utilizando o argocd e kustomize](/features/Readme.md)
 
 ## 📄 Referências
 
