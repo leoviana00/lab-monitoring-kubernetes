@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: helm-metrics-server
-  namespace: argo
+  namespace: argo-cd
   finalizers:
   - resources-finalizers.argocd.argoproj.io
 spec:
