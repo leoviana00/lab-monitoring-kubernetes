@@ -17,7 +17,7 @@ patches:
             service:
               port: 9300
           grafana:
-            enabled: false
+            enabled: true
           prometheusOperator:
             admissionWebhooks:
               patch:
