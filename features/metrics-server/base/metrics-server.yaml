@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-metrics-server
+  namespace: argo
+  finalizers:
+  - resources-finalizers.argocd.argoproj.io
+spec:
+  project: features
+  source:
+   repoURL: "https://kubernetes-sigs.github.io/metrics-server/"
+   chart: "metrics-server"
+   targetRevision: 3.8.3
+   helm:
+     releaseName: metrics-server
+     values: |
+        replicas: 1
+        args:
+          - --kubelet-insecure-tls
+        service:
+          port: 10250
+  syncPolicy:
+    automated:
+      prune: true
+      # allowEmpty: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=false
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: kube-system

@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-nginx-ingress
+  namespace: argo
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+
+spec:
+  project: features
+  source:
+   repoURL: "https://charts.bitnami.com/bitnami"
+   chart: "nginx-ingress-controller"
+   targetRevision: 9.3.24
+   helm:
+     releaseName: nginx-ingress
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: nginx-ingress
