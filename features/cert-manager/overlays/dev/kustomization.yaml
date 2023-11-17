@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base
+
+patches:
+  - patch: |-
+      - op: add
+        path: /webhooks/0/namespaceSelector/matchExpressions/-
+        value:
+          key: control-plane
+          operator: DoesNotExist
+    target:
+      group: admissionregistration.k8s.io
+      version: v1
+      kind: ValidatingWebhookConfiguration
+      name: cert-manager-webhook
