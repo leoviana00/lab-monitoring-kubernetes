@@ -13,6 +13,18 @@ patches:
             service:
               type: NodePort
               nodePort: 30090
+            prometheusSpec:  
+              additionalScrapeConfigs: |
+              - job_name: 'argocd'
+                scrape_interval: 30s
+                scrape_timeout: 10s
+                static_configs:
+                  - targets: ['argocd-application-controller-metrics.argocd.svc.cluster.local:8082', 'argocd-redis-metrics.argocd.svc.cluster.local:9121']
+              - job_name: 'alertManager'
+                scrape_interval: 30s
+                scrape_timeout: 10s
+                static_configs:
+                  - targets: ['alertmanager-operated.argocd.svc.cluster.local:9093']
           prometheus-node-exporter:
             service:
               port: 9300
