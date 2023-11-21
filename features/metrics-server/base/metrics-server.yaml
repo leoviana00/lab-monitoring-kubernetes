@@ -4,7 +4,7 @@ metadata:
   name: helm-metrics-server
   namespace: argo-cd
   finalizers:
-  - resources-finalizers.argocd.argoproj.io
+  - resources-finalizers.argo-cd.argoproj.io
 spec:
   project: features
   source:
