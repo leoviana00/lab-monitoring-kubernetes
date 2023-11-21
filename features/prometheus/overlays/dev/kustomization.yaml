@@ -13,12 +13,6 @@ patches:
             service:
               type: NodePort
               nodePort: 30090
-            prometheusSpec:  
-              ruleSelectorNilUsesHelmValues: false
-              serviceMonitorSelectorNilUsesHelmValues: false
-              podMonitorSelectorNilUsesHelmValues: false
-              probeSelectorNilUsesHelmValues: false
-              scrapeConfigSelectorNilUsesHelmValues: false
           prometheus-node-exporter:
             service:
               port: 9300
